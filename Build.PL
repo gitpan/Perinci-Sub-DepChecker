@@ -18,7 +18,7 @@ my %module_build_args = (
     "Steven Haryanto <stevenharyanto\@gmail.com>"
   ],
   "dist_name" => "Perinci-Sub-DepChecker",
-  "dist_version" => "0.05",
+  "dist_version" => "0.06",
   "license" => "perl",
   "module_name" => "Perinci::Sub::DepChecker",
   "recommends" => {},
@@ -26,7 +26,7 @@ my %module_build_args = (
   "requires" => {
     "File::Which" => 0,
     "Log::Any" => 0,
-    "Rinci" => "1.1.14",
+    "Rinci" => "1.1.18",
     "perl" => "5.010000"
   },
   "script_files" => []

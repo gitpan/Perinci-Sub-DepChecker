@@ -28,7 +28,7 @@
          "requires" : {
             "File::Which" : 0,
             "Log::Any" : 0,
-            "Rinci" : "v1.1.14",
+            "Rinci" : "v1.1.18",
             "perl" : "5.010000"
          }
       },
@@ -45,6 +45,6 @@
          "url" : "http://github.com/sharyanto/perl-Perinci-Sub-DepChecker"
       }
    },
-   "version" : "0.05"
+   "version" : "0.06"
 }
 

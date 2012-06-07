@@ -13,7 +13,7 @@ our @EXPORT_OK = qw(
                        list_mentioned_dep_clauses
                );
 
-our $VERSION = '0.05'; # VERSION
+our $VERSION = '0.06'; # VERSION
 
 sub check_deps {
     my ($val) = @_;
@@ -86,6 +86,18 @@ sub checkdep_prog {
 
 # for backward-compatibility
 sub checkdep_exec { checkdep_prog(@_) }
+
+# we check this dep by checking arguments, so we'll let something like
+# Perinci::Sub::Wrapper to do it
+sub checkdep_tmp_dir { "" }
+
+# we check this dep by checking arguments, so we'll let something like
+# Perinci::Sub::Wrapper to do it
+sub checkdep_trash_dir { "" }
+
+# we check this dep by checking arguments, so we'll let something like
+# Perinci::Sub::Wrapper to do it
+sub checkdep_undo_trash_dir { "" }
 
 sub _all_elems_is {
     my ($ary, $el) = @_;
@@ -165,7 +177,7 @@ Perinci::Sub::DepChecker - Check dependencies from 'deps' property
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
