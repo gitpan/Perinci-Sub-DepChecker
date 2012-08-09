@@ -16,10 +16,9 @@ meta-spec:
 name: Perinci-Sub-DepChecker
 requires:
   File::Which: 0
-  Log::Any: 0
-  Rinci: 1.1.18
+  Rinci: v1.1.18
   perl: 5.010000
 resources:
   homepage: http://search.cpan.org/dist/Perinci-Sub-DepChecker/
   repository: http://github.com/sharyanto/perl-Perinci-Sub-DepChecker
-version: 0.06
+version: 0.07

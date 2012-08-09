@@ -13,15 +13,19 @@ our @EXPORT_OK = qw(
                        list_mentioned_dep_clauses
                );
 
-our $VERSION = '0.06'; # VERSION
+our $VERSION = '0.07'; # VERSION
 
 sub check_deps {
     my ($val) = @_;
     #say "D:check: ", dump($val);
     for my $dname (keys %$val) {
         my $dval = $val->{$dname};
-        return "Unknown dependency type: $dname"
-            unless defined &{"checkdep_$dname"};
+        unless (defined &{"checkdep_$dname"}) {
+            # give a chance to load from a module first
+            eval { require "Perinci/Sub/Dep/$dname.pm" };
+            return "Unknown dependency type: $dname"
+                unless defined &{"checkdep_$dname"};
+        }
         my $check = \&{"checkdep_$dname"};
         my $res = $check->($dval);
         if ($res) {
@@ -177,7 +181,7 @@ Perinci::Sub::DepChecker - Check dependencies from 'deps' property
 
 =head1 VERSION
 
-version 0.06
+version 0.07
 
 =head1 SYNOPSIS
 
