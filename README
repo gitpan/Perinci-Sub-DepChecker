@@ -2,7 +2,7 @@ NAME
     Perinci::Sub::DepChecker - Check dependencies from 'deps' property
 
 VERSION
-    version 0.07
+    version 0.08
 
 SYNOPSIS
      use Perinci::Spec::DepChecker qw(check_deps dep_must_be_satisfied);

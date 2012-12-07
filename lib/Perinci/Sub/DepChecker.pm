@@ -13,7 +13,7 @@ our @EXPORT_OK = qw(
                        list_mentioned_dep_clauses
                );
 
-our $VERSION = '0.07'; # VERSION
+our $VERSION = '0.08'; # VERSION
 
 sub check_deps {
     my ($val) = @_;
@@ -82,8 +82,9 @@ sub checkdep_prog {
         return "Program $cval not executable" unless (-x $cval);
     } else {
         require File::Which;
-        return "Program $cval not found in PATH"
-            unless File::Which::which($cval);
+        return "Program $cval not found in PATH (".
+            join(":", File::Spec->path).")"
+                unless File::Which::which($cval);
     }
     "";
 }
@@ -181,7 +182,7 @@ Perinci::Sub::DepChecker - Check dependencies from 'deps' property
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 SYNOPSIS
 
