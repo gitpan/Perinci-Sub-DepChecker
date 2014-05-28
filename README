@@ -2,7 +2,8 @@ NAME
     Perinci::Sub::DepChecker - Check dependencies from 'deps' property
 
 VERSION
-    version 0.09
+    This document describes version 0.10 of Perinci::Sub::DepChecker (from
+    Perl distribution Perinci-Sub-DepChecker), released on 2014-05-28.
 
 SYNOPSIS
      use Perinci::Spec::DepChecker qw(check_deps dep_must_be_satisfied);
@@ -108,7 +109,7 @@ AUTHOR
     Steven Haryanto <stevenharyanto@gmail.com>
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2013 by Steven Haryanto.
+    This software is copyright (c) 2014 by Steven Haryanto.
 
     This is free software; you can redistribute it and/or modify it under
     the same terms as the Perl 5 programming language system itself.

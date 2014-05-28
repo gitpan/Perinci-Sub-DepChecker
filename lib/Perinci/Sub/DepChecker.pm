@@ -14,7 +14,10 @@ our @EXPORT_OK = qw(
                        list_mentioned_dep_clauses
                );
 
-our $VERSION = '0.09'; # VERSION
+our $VERSION = '0.10'; # VERSION
+our $DATE = '2014-05-28'; # DATE
+
+my $pa;
 
 sub check_deps {
     my ($val) = @_;
@@ -87,6 +90,31 @@ sub checkdep_prog {
             join(":", File::Spec->path).")"
                 unless File::Which::which($cval);
     }
+    "";
+}
+
+sub _pa {
+    return $pa if $pa;
+    require Perinci::Access;
+    $pa = Perinci::Access->new;
+    $pa;
+}
+
+sub checkdep_pkg {
+    my ($cval) = @_;
+    my $res = _pa->request(info => $cval);
+    $res->[0] == 200 or return "Can't perform 'info' Riap request on '$cval': ".
+        "$res->[0] $res->[1]";
+    $res->[2]{type} eq 'package' or return "$cval is not a Riap package";
+    "";
+}
+
+sub checkdep_func {
+    my ($cval) = @_;
+    my $res = _pa->request(info => $cval);
+    $res->[0] == 200 or return "Can't perform 'info' Riap request on '$cval': ".
+        "$res->[0] $res->[1]";
+    $res->[2]{type} eq 'function' or return "$cval is not a Riap function";
     "";
 }
 
@@ -185,7 +213,7 @@ Perinci::Sub::DepChecker - Check dependencies from 'deps' property
 
 =head1 VERSION
 
-version 0.09
+This document describes version 0.10 of Perinci::Sub::DepChecker (from Perl distribution Perinci-Sub-DepChecker), released on 2014-05-28.
 
 =head1 SYNOPSIS
 
@@ -203,6 +231,8 @@ The 'deps' spec clause adds information about subroutine dependencies. This
 module performs check on it.
 
 This module is currently mainly used by L<Perinci::Sub::Wrapper>.
+
+=for Pod::Coverage ^(checkdep_.*)$
 
 =head1 FUNCTIONS
 
@@ -296,7 +326,7 @@ Steven Haryanto <stevenharyanto@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Steven Haryanto.
+This software is copyright (c) 2014 by Steven Haryanto.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
